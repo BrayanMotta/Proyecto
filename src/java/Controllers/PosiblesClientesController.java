@@ -31,7 +31,82 @@ public class PosiblesClientesController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        //Se valida que se haya presionado el boton guardar
+        if (request.getParameter("btnGuardar") != null) {
+            btnGuardar(request, response);
+        } else if (request.getParameter("btnModificar") != null) {
+        } else if (request.getParameter("btnCancelar") != null) {
+        }
+    }
+
+    public void btnGuardar(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        try {
+            //Definicion de modelos
+            Models.clsPosiblesClientes obclsPosiblesClientes = new Models.clsPosiblesClientes();
+            Models.clsFPC obclsFPC = new Models.clsFPC();
+            Models.clsEPC obclsEPC = new Models.clsEPC();
+            Models.clsSector obclsSector = new Models.clsSector();
+            Models.clsCalificacion obclsCalificacion = new Models.clsCalificacion();
+            
+            if(request.getParameter("txtEmpresa") != null){
+                obclsPosiblesClientes.setStEmpresa(request.getParameter("txtEmpresa"));
+            }
+            
+            if(request.getParameter("txtNombre") != null){
+                obclsPosiblesClientes.setStNombre(request.getParameter("txtNombre"));
+            }
+            if(request.getParameter("txtApellido") != null){
+                obclsPosiblesClientes.setStApellido(request.getParameter("txtApellido"));
+            }
+            if(request.getParameter("txtTitulo") != null){
+                obclsPosiblesClientes.setStTitulo(request.getParameter("txtTitulo"));
+            }
+            if(request.getParameter("txtCorreo") != null){
+                obclsPosiblesClientes.setStCorreo(request.getParameter("txtCorreo"));
+            }
+            if(request.getParameter("txtTelefono") != null){
+                obclsPosiblesClientes.setStTelefono(request.getParameter("txtTelefono"));
+            }
+            if(request.getParameter("txtFax") != null){
+                obclsPosiblesClientes.setStFax(request.getParameter("txtFax"));
+            }
+            if(request.getParameter("txtMovil") != null){
+                obclsPosiblesClientes.setStMovil(request.getParameter("txtMovil"));
+            }
+            if(request.getParameter("txtSitioWeb") != null){
+                obclsPosiblesClientes.setStSitioWeb(request.getParameter("txtSitioWeb"));
+            }
+            if(request.getParameter("ddlFPC") != null){
+                //MODELO HIJO
+                obclsFPC.setInCodigo(Integer.parseInt(request.getParameter("ddlFPC")));
+                
+                String stDescripcion = "";
+                
+                if(request.getParameter("ddlFPC").equals("1")){
+                    stDescripcion = "None";
+                }else if(request.getParameter("ddlFPC").equals("2")){
+                    stDescripcion = "Aviso";
+                }else if(request.getParameter("ddlFPC").equals("3")){
+                    stDescripcion = "Llamada no solicitada";
+                }else if(request.getParameter("ddlFPC").equals("4")){
+                    stDescripcion = "Recomendacion de empleado";
+                }else if(request.getParameter("ddlFPC").equals("5")){
+                    stDescripcion = "Recomendacion externa";
+                }else if(request.getParameter("ddlFPC").equals("6")){
+                    stDescripcion = "Tienda en linea";
+                }
+                
+                obclsFPC.setStDescripcion(stDescripcion);
+                
+                //ASIGNACION AL MODELO PADRE
+                obclsPosiblesClientes.setObclsFPC(obclsFPC);
+            }
+            
+        } catch (Exception ex) {
+
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

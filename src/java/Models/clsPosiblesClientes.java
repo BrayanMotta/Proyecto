@@ -10,6 +10,7 @@ package Models;
  * @author MOTTA
  */
 public class clsPosiblesClientes {
+    //ATRIBUTOS
     public String stEmpresa;
     public String stNombre;
     public String stApellido;
@@ -29,6 +30,8 @@ public class clsPosiblesClientes {
     public String stIDSkype;
     public String stTwitter;
     public String stCorreoSecundario;
+    
+    //METODOS
 
     public String getStEmpresa() {
         return stEmpresa;

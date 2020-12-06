@@ -62,15 +62,15 @@
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label name="lblEmpresa">Empresa</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese la empresa" name="txtEmpresa" required=""/>
+                                    <input class="form-control" type="text" placeholder="Ingrese la empresa" name="txtEmpresa"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblNombre">Nombre</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el nombre" name="txtNombre" required=""/>
+                                    <input class="form-control" type="text" placeholder="Ingrese el nombre" name="txtNombre"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblApellido">Apellido</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el apellido" name="txtApellido" required=""/>
+                                    <input class="form-control" type="text" placeholder="Ingrese el apellido" name="txtApellido"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblTitulo">Titulo</label>
@@ -83,7 +83,7 @@
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label name="lblCorreo">Correo electronico</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el correo" name="txtCorreo" required=""/>
+                                    <input class="form-control" type="text" placeholder="Ingrese el correo" name="txtCorreo" />
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblTelefono">Telefono</label>
