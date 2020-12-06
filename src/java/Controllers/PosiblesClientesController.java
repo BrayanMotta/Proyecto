@@ -102,6 +102,103 @@ public class PosiblesClientesController extends HttpServlet {
                 //ASIGNACION AL MODELO PADRE
                 obclsPosiblesClientes.setObclsFPC(obclsFPC);
             }
+            if(request.getParameter("ddlEPC") != null){
+                //MODELO HIJO
+                obclsEPC.setInCodigo(Integer.parseInt(request.getParameter("ddlEPC")));
+                
+                String stDescripcion = "";
+                
+                if(request.getParameter("ddlEPC").equals("1")){
+                    stDescripcion = "None";
+                }else if(request.getParameter("ddlEPC").equals("2")){
+                    stDescripcion = "Intento de contacto";
+                }else if(request.getParameter("ddlEPC").equals("3")){
+                    stDescripcion = "Contactar en el futuro";
+                }else if(request.getParameter("ddlEPC").equals("4")){
+                    stDescripcion = "Contactado";
+                }else if(request.getParameter("ddlEPC").equals("5")){
+                    stDescripcion = "Posible cliente no solicitado";
+                }else if(request.getParameter("ddlEPC").equals("6")){
+                    stDescripcion = "Posible cliente perdido";
+                }
+                
+                obclsEPC.setStDescripcion(stDescripcion);
+                
+                //ASIGNACION AL MODELO PADRE
+                obclsPosiblesClientes.setObclsEPC(obclsEPC);
+            }
+            if(request.getParameter("ddlSector") != null){
+                //MODELO HIJO
+                obclsSector.setInCodigo(Integer.parseInt(request.getParameter("ddlSector")));
+                
+                String stDescripcion = "";
+                
+                if(request.getParameter("ddlSector").equals("1")){
+                    stDescripcion = "None";
+                }else if(request.getParameter("ddlSector").equals("2")){
+                    stDescripcion = "APS (Proveerdor de servicio de aplicaciones)";
+                }else if(request.getParameter("ddlSector").equals("3")){
+                    stDescripcion = "OEM de datos";
+                }else if(request.getParameter("ddlSector").equals("4")){
+                    stDescripcion = "ERP (Planificacion de recursos de empresa)";
+                }else if(request.getParameter("ddlSector").equals("5")){
+                    stDescripcion = "Gobierno/Ejercito";
+                }else if(request.getParameter("ddlSector").equals("6")){
+                    stDescripcion = "Empresa grande";
+                }
+                
+                obclsSector.setStDescripcion(stDescripcion);
+                
+                //ASIGNACION AL MODELO PADRE
+                obclsPosiblesClientes.setObclsSector(obclsSector);
+            }
+            if(request.getParameter("txtCantidadEmpleados") != null){
+                obclsPosiblesClientes.setInCantidadEmpleados(Integer.parseInt(request.getParameter("txtCantidadEmpleados")));
+            }
+            if(request.getParameter("txtIngresosAnuales") != null){
+                obclsPosiblesClientes.setDbIngresosAnuales(Double.parseDouble(request.getParameter("txtIngresosAnuales")));
+            }
+            if(request.getParameter("ddlCalificacion") != null){
+                //MODELO HIJO
+                obclsCalificacion.setInCodigo(Integer.parseInt(request.getParameter("ddlCalificacion")));
+                
+                String stDescripcion = "";
+                
+                if(request.getParameter("ddlCalificacion").equals("1")){
+                    stDescripcion = "None";
+                }else if(request.getParameter("ddlCalificacion").equals("2")){
+                    stDescripcion = "Adquirido";
+                }else if(request.getParameter("ddlCalificacion").equals("3")){
+                    stDescripcion = "Activo";
+                }else if(request.getParameter("ddlCalificacion").equals("4")){
+                    stDescripcion = "Fallo de mercado";
+                }else if(request.getParameter("ddlCalificacion").equals("5")){
+                    stDescripcion = "Proyecto cancelado";
+                }else if(request.getParameter("ddlCalificacion").equals("6")){
+                    stDescripcion = "Apagar";
+                }
+                
+                obclsCalificacion.setStDescripcion(stDescripcion);
+                
+                //ASIGNACION AL MODELO PADRE
+                obclsPosiblesClientes.setObclsCalificacion(obclsCalificacion);
+            }
+            if(request.getParameter("chkNPCE") != null){
+                
+                char chSeleccion = request.getParameter("chkNPCE").equals("on")
+                        ? 'S' : 'N';
+                obclsPosiblesClientes.setChNPCE(chSeleccion);
+            }
+            if(request.getParameter("txtIDSkype") != null){
+                obclsPosiblesClientes.setStIDSkype(request.getParameter("txtIDSkype"));
+            }
+            if(request.getParameter("txtTwitter") != null){
+                obclsPosiblesClientes.setStTwitter(request.getParameter("txtTwitter"));
+            }
+            if(request.getParameter("txtCorreoSecundario") != null){
+                obclsPosiblesClientes.setStCorreoSecundario(request.getParameter("txtCorreoSecundario"));
+            }
+            
             
         } catch (Exception ex) {
 

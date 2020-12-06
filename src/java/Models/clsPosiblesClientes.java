@@ -24,9 +24,9 @@ public class clsPosiblesClientes {
     public clsEPC obclsEPC;
     public clsSector obclsSector;
     public int inCantidadEmpleados;
-    public double inIngresosAnuales;
+    public double dbIngresosAnuales;
     public clsCalificacion obclsCalificacion;
-    public boolean blNPCE;
+    public char chNPCE;
     public String stIDSkype;
     public String stTwitter;
     public String stCorreoSecundario;
@@ -137,12 +137,12 @@ public class clsPosiblesClientes {
         this.inCantidadEmpleados = inCantidadEmpleados;
     }
 
-    public double getInIngresosAnuales() {
-        return inIngresosAnuales;
+    public double getDbIngresosAnuales() {
+        return dbIngresosAnuales;
     }
 
-    public void setInIngresosAnuales(double inIngresosAnuales) {
-        this.inIngresosAnuales = inIngresosAnuales;
+    public void setDbIngresosAnuales(double dbIngresosAnuales) {
+        this.dbIngresosAnuales = dbIngresosAnuales;
     }
 
     public clsCalificacion getObclsCalificacion() {
@@ -153,12 +153,12 @@ public class clsPosiblesClientes {
         this.obclsCalificacion = obclsCalificacion;
     }
 
-    public boolean isBlNPCE() {
-        return blNPCE;
+    public char isChNPCE() {
+        return chNPCE;
     }
 
-    public void setBlNPCE(boolean blNPCE) {
-        this.blNPCE = blNPCE;
+    public void setChNPCE(char blNPCE) {
+        this.chNPCE = chNPCE;
     }
 
     public String getStIDSkype() {

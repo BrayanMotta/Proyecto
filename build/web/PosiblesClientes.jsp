@@ -153,7 +153,7 @@
                                     <label name="lblCalificacion">Calificacion</label>
                                     <select class="form-control" name="ddlCalificacion">
                                         <option value="1">None</option>
-                                        <option value="2">Adquirid</option>
+                                        <option value="2">Adquirido</option>
                                         <option value="3">Activo</option>
                                         <option value="4">Fallo de mercado</option>
                                         <option value="5">Proyecto cancelado</option>
