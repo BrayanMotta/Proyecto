@@ -11,6 +11,7 @@ package Models;
  */
 public class clsPosiblesClientes {
     //ATRIBUTOS
+    public int inCodigo;    
     public String stEmpresa;
     public String stNombre;
     public String stApellido;
@@ -32,6 +33,13 @@ public class clsPosiblesClientes {
     public String stCorreoSecundario;
     
     //METODOS
+    public int getInCodigo() {
+        return inCodigo;
+    }
+
+    public void setInCodigo(int inCodigo) {
+        this.inCodigo = inCodigo;
+    }
 
     public String getStEmpresa() {
         return stEmpresa;
