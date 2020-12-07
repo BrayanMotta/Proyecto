@@ -161,7 +161,7 @@ public class clsPosiblesClientes {
         this.obclsCalificacion = obclsCalificacion;
     }
 
-    public char isChNPCE() {
+    public char getChNPCE() {
         return chNPCE;
     }
 

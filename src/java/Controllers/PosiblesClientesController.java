@@ -222,7 +222,7 @@ public class PosiblesClientesController extends HttpServlet {
 
             //Definir parametros desde el controlador
             request.setAttribute("stMensaje", "Se realizo el proceso con exito");
-            request.setAttribute("stTipo", "succes");
+            request.setAttribute("stTipo", "success");
 
             //Redirecciono y envio los valores
             request.getRequestDispatcher("PosiblesClientes.jsp").forward(request, response);

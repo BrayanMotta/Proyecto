@@ -4,6 +4,8 @@
     Author     : MOTTA
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -32,6 +34,28 @@
 
     </head>
     <body>
+        <%
+            List<Models.clsPosiblesClientes> lstclsPosiblesClientes = new ArrayList<Models.clsPosiblesClientes>();
+            //Existencia de la variable de sesion
+            if (session.getAttribute("sesion_lstclsPosiblesClientes") != null) {
+                //Casting para darle un tipo de dato a la variable sesion
+                lstclsPosiblesClientes = (List<Models.clsPosiblesClientes>) session.getAttribute("sesion_lstclsPosiblesClientes");
+            }
+
+            if (request.getAttribute("stMensaje") != null && request.getAttribute("stTipo") != null) {
+        %>    
+        <input type="text" hidden="" id="txtMensaje" value="<%=request.getAttribute("stMensaje")%>"/>
+        <input type="text" hidden="" id="txtTipo" value="<%=request.getAttribute("stTipo")%>"/>
+
+        <script>
+            var mensaje = document.getElementById("txtMensaje").value;
+            var tipo = document.getElementById("txtTipo").value;
+
+            swal("Mensaje", mensaje, tipo);
+        </script>
+        <%
+            }
+        %>
         <div class="container">
             <div class="card mx-auto mt-5">
                 <div class="card-header">Crear Posibles Clientes</div>
@@ -181,6 +205,75 @@
                                 <div class="col-md-6">
                                     <label name="lblCorreoSecundario">Correo electronico secundario</label>
                                     <input class="form-control" type="text" placeholder="Ingrese correo secundario" name="txtCorreoSecundario" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-12">
+                                    <i class="fa fa-check-circle"></i>
+                                    Registros: <%= lstclsPosiblesClientes.size()%>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-12">
+                                    <table class="table table-bordered table-primary table-responsive">                                        
+                                        <tr>
+                                            <td>Empresa</td>
+                                            <td>Nombre</td>
+                                            <td>Apellido</td>
+                                            <td>Titulo</td>
+                                            <td>Correo electronico</td>
+                                            <td>Telefono</td>
+                                            <td>Fax</td>
+                                            <td>Movil</td>
+                                            <td>Sitio Web</td>
+                                            <td>Fuente de Posibles Clientes</td>
+                                            <td>Estado de Posible Cliente</td>
+                                            <td>Sector</td>
+                                            <td>Cantidad de empleados</td>
+                                            <td>Ingresos anuales</td>
+                                            <td>Calificacion</td>
+                                            <td>No participacion de correo electronico</td>
+                                            <td>ID de Skype</td>
+                                            <td>Twitter</td>
+                                            <td>Correo electronico secundario</td>
+                                        </tr>
+                                        <%
+                                            for (Models.clsPosiblesClientes item : lstclsPosiblesClientes) {
+                                                Models.clsFPC obclsFPC = item.getObclsFPC();
+                                                Models.clsEPC obclsEPC = item.getObclsEPC();
+                                                Models.clsSector obclsSector = item.getObclsSector();
+                                                Models.clsCalificacion obclsCalificacion = item.getObclsCalificacion();
+                                        %>
+                                        <tr>
+                                            <td><%= item.getStEmpresa() %></td>
+                                            <td><%= item.getStNombre() %></td>
+                                            <td><%= item.getStApellido() %></td>
+                                            <td><%= item.getStTitulo() %></td>
+                                            <td><%= item.getStCorreo() %></td>
+                                            <td><%= item.getStTelefono() %></td>
+                                            <td><%= item.getStFax() %></td>
+                                            <td><%= item.getStMovil() %></td>
+                                            <td><%= item.getStSitioWeb() %></td>
+                                            <td><%= obclsFPC.getStDescripcion() %></td>
+                                            <td><%= obclsEPC.getStDescripcion() %></td>
+                                            <td><%= obclsSector.getStDescripcion() %></td>
+                                            <td><%= item.getInCantidadEmpleados() %></td>
+                                            <td><%= item.getDbIngresosAnuales() %></td>
+                                            <td><%= obclsCalificacion.getStDescripcion() %></td>
+                                            <td><%= item.getChNPCE() %></td>
+                                            <td><%= item.getStIDSkype() %></td>
+                                            <td><%= item.getStTwitter() %></td>
+                                            <td><%= item.getStCorreoSecundario() %></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </table>
                                 </div>
                             </div>
                         </div>
