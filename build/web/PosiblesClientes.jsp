@@ -75,7 +75,10 @@
                                     <input type="submit" value="Guardar" class="btn btn-outline-primary" name="btnGuardar"/>
                                     <input type="submit" value="Modificar" class="btn btn-outline-primary" name="btnModificar"/>
                                     <input type="submit" value="Cancelar" class="btn btn-outline-primary" name="btnCancelar"/>
-                                    <input type="submit" value="Volver" class="btn btn-outline-primary" name="btnVolver"/>
+                                    <a class="btn btn-outline-primary" href="Index.jsp">Volver</a>
+                                    <input type="text" name="codigoModificar" id="codigoModificar"
+                                           value="<%= obclsPosiblesClientes.getInCodigo() %>"
+                                           hidden=""/>
                                 </div>
                             </div>
                         </div>
