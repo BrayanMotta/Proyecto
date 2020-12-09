@@ -165,7 +165,7 @@ public class clsPosiblesClientes {
         return chNPCE;
     }
 
-    public void setChNPCE(char blNPCE) {
+    public void setChNPCE(char chNPCE) {
         this.chNPCE = chNPCE;
     }
 

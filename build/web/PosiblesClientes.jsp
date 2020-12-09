@@ -35,6 +35,12 @@
     </head>
     <body>
         <%
+            Models.clsPosiblesClientes obclsPosiblesClientes = new Models.clsPosiblesClientes();
+            
+            if(request.getAttribute("obclsPosiblesClientes") != null){
+                obclsPosiblesClientes = (Models.clsPosiblesClientes) request.getAttribute("obclsPosiblesClientes");
+            }
+            
             List<Models.clsPosiblesClientes> lstclsPosiblesClientes = new ArrayList<Models.clsPosiblesClientes>();
             //Existencia de la variable de sesion
             if (session.getAttribute("sesion_lstclsPosiblesClientes") != null) {
@@ -86,19 +92,23 @@
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label name="lblEmpresa">Empresa</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese la empresa" name="txtEmpresa"/>
+                                    <input class="form-control" type="text" placeholder="Ingrese la empresa" name="txtEmpresa" 
+                                           value="<%= obclsPosiblesClientes.getStEmpresa() != null ? obclsPosiblesClientes.getStEmpresa() : "" %>"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblNombre">Nombre</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el nombre" name="txtNombre"/>
+                                    <input class="form-control" type="text" placeholder="Ingrese el nombre" name="txtNombre" 
+                                           value="<%= obclsPosiblesClientes.getStNombre() != null ? obclsPosiblesClientes.getStNombre() : "" %>"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblApellido">Apellido</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el apellido" name="txtApellido"/>
+                                    <input class="form-control" type="text" placeholder="Ingrese el apellido" name="txtApellido"
+                                           value="<%= obclsPosiblesClientes.getStApellido() != null ? obclsPosiblesClientes.getStApellido() : "" %>"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblTitulo">Titulo</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el titulo" name="txtTitulo" />
+                                    <input class="form-control" type="text" placeholder="Ingrese el titulo" name="txtTitulo" 
+                                         value="<%= obclsPosiblesClientes.getStTitulo()!= null ? obclsPosiblesClientes.getStTitulo(): "" %>"  />
                                 </div>
                             </div>
                         </div>
@@ -107,19 +117,23 @@
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label name="lblCorreo">Correo electronico</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el correo" name="txtCorreo" />
+                                    <input class="form-control" type="text" placeholder="Ingrese el correo" name="txtCorreo" 
+                                           value="<%= obclsPosiblesClientes.getStCorreo()!= null ? obclsPosiblesClientes.getStCorreo(): "" %>"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblTelefono">Telefono</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el telefono" name="txtTelefono" />
+                                    <input class="form-control" type="text" placeholder="Ingrese el telefono" name="txtTelefono" 
+                                           value="<%= obclsPosiblesClientes.getStTelefono()!= null ? obclsPosiblesClientes.getStTelefono(): "" %>"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblFax">Fax</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el fax" name="txtFax" />
+                                    <input class="form-control" type="text" placeholder="Ingrese el fax" name="txtFax" 
+                                           value="<%= obclsPosiblesClientes.getStFax()!= null ? obclsPosiblesClientes.getStFax(): "" %>"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblMovil">Movil</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el movil" name="txtMovil" />
+                                    <input class="form-control" type="text" placeholder="Ingrese el movil" name="txtMovil" 
+                                           value="<%= obclsPosiblesClientes.getStMovil()!= null ? obclsPosiblesClientes.getStMovil(): "" %>"/>
                                 </div>
                             </div>
                         </div>
@@ -128,65 +142,69 @@
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label name="lblSitioWeb">Sitio Web</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el sitio web" name="txtSitioWeb" />
+                                    <input class="form-control" type="text" placeholder="Ingrese el sitio web" name="txtSitioWeb" 
+                                           value="<%= obclsPosiblesClientes.getStSitioWeb()!= null ? obclsPosiblesClientes.getStSitioWeb(): "" %>"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblFPC">Fuente de Posibles clientes</label>
                                     <select class="form-control" name="ddlFPC">
-                                        <option value="1">None</option>
-                                        <option value="2">Aviso</option>
-                                        <option value="3">Llamada no solicitada</option>
-                                        <option value="4">Recomendacion de empleado</option>
-                                        <option value="5">Recomendacion externa</option>
-                                        <option value="6">Tienda en linea</option>
+                                        <option value="1" <%= obclsPosiblesClientes.obclsFPC != null ? obclsPosiblesClientes.obclsFPC.getInCodigo() == 1 ? "selected" : "" : "" %>>None</option>
+                                        <option value="2" <%= obclsPosiblesClientes.obclsFPC != null ? obclsPosiblesClientes.obclsFPC.getInCodigo() == 2 ? "selected" : "" : "" %>>Aviso</option>
+                                        <option value="3" <%= obclsPosiblesClientes.obclsFPC != null ? obclsPosiblesClientes.obclsFPC.getInCodigo() == 3 ? "selected" : "" : "" %>>Llamada no solicitada</option>
+                                        <option value="4" <%= obclsPosiblesClientes.obclsFPC != null ? obclsPosiblesClientes.obclsFPC.getInCodigo() == 4 ? "selected" : "" : "" %>>Recomendacion de empleado</option>
+                                        <option value="5" <%= obclsPosiblesClientes.obclsFPC != null ? obclsPosiblesClientes.obclsFPC.getInCodigo() == 5 ? "selected" : "" : "" %>>Recomendacion externa</option>
+                                        <option value="6" <%= obclsPosiblesClientes.obclsFPC != null ? obclsPosiblesClientes.obclsFPC.getInCodigo() == 6 ? "selected" : "" : "" %>>Tienda en linea</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblEPC">Estado de Posible cliente</label>
                                     <select class="form-control" name="ddlEPC">
-                                        <option value="1">None</option>
-                                        <option value="2">Intento de contacto</option>
-                                        <option value="3">Contactar en el futuro</option>
-                                        <option value="4">Contactado</option>
-                                        <option value="5">Posible cliente no solicitado</option>
-                                        <option value="6">Posible cliente perdido</option>
+                                        <option value="1" <%= obclsPosiblesClientes.obclsEPC != null ? obclsPosiblesClientes.obclsEPC.getInCodigo() == 1 ? "selected" : "" : "" %>>None</option>
+                                        <option value="2" <%= obclsPosiblesClientes.obclsEPC != null ? obclsPosiblesClientes.obclsEPC.getInCodigo() == 2 ? "selected" : "" : "" %>>Intento de contacto</option>
+                                        <option value="3" <%= obclsPosiblesClientes.obclsEPC != null ? obclsPosiblesClientes.obclsEPC.getInCodigo() == 3 ? "selected" : "" : "" %>>Contactar en el futuro</option>
+                                        <option value="4" <%= obclsPosiblesClientes.obclsEPC != null ? obclsPosiblesClientes.obclsEPC.getInCodigo() == 4 ? "selected" : "" : "" %>>Contactado</option>
+                                        <option value="5" <%= obclsPosiblesClientes.obclsEPC != null ? obclsPosiblesClientes.obclsEPC.getInCodigo() == 5 ? "selected" : "" : "" %>>Posible cliente no solicitado</option>
+                                        <option value="6" <%= obclsPosiblesClientes.obclsEPC != null ? obclsPosiblesClientes.obclsEPC.getInCodigo() == 6 ? "selected" : "" : "" %>>Posible cliente perdido</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblSector">Sector</label>
                                     <select class="form-control" name="ddlSector">
-                                        <option value="1">None</option>
-                                        <option value="2">APS (Proveerdor de servicio de aplicaciones)</option>
-                                        <option value="3">OEM de datos</option>
-                                        <option value="4">ERP (Planificacion de recursos de empresa)</option>
-                                        <option value="5">Gobierno/Ejercito</option>
-                                        <option value="6">Empresa grande</option>
+                                        <option value="1" <%= obclsPosiblesClientes.obclsSector != null ? obclsPosiblesClientes.obclsSector.getInCodigo() == 1 ? "selected" : "" : "" %>>None</option>
+                                        <option value="2" <%= obclsPosiblesClientes.obclsSector != null ? obclsPosiblesClientes.obclsSector.getInCodigo() == 2 ? "selected" : "" : "" %>>APS (Proveerdor de servicio de aplicaciones)</option>
+                                        <option value="3" <%= obclsPosiblesClientes.obclsSector != null ? obclsPosiblesClientes.obclsSector.getInCodigo() == 3 ? "selected" : "" : "" %>>OEM de datos</option>
+                                        <option value="4" <%= obclsPosiblesClientes.obclsSector != null ? obclsPosiblesClientes.obclsSector.getInCodigo() == 4 ? "selected" : "" : "" %>>ERP (Planificacion de recursos de empresa)</option>
+                                        <option value="5" <%= obclsPosiblesClientes.obclsSector != null ? obclsPosiblesClientes.obclsSector.getInCodigo() == 5 ? "selected" : "" : "" %>>Gobierno/Ejercito</option>
+                                        <option value="6" <%= obclsPosiblesClientes.obclsSector != null ? obclsPosiblesClientes.obclsSector.getInCodigo() == 6 ? "selected" : "" : "" %>>Empresa grande</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label name="lblCantidadEmpleados">Cantidad de empleado</label>
-                                    <input class="form-control" type="number" placeholder="Ingrese la cantidad de empleados" name="txtCantidadEmpleados" />
+                                    <input class="form-control" type="number" placeholder="Ingrese la cantidad de empleados" name="txtCantidadEmpleados" 
+                                           value="<%= obclsPosiblesClientes.getInCantidadEmpleados()!= 0 ? obclsPosiblesClientes.getInCantidadEmpleados(): "" %>"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblIngresosAnuales">Ingresos anuales</label>
-                                    <input class="form-control" type="number" placeholder="Ingrese los ingresos" name="txtIngresosAnuales" />
+                                    <input class="form-control" type="number" placeholder="Ingrese los ingresos" name="txtIngresosAnuales" 
+                                           value="<%= obclsPosiblesClientes.getDbIngresosAnuales()!= 0 ? obclsPosiblesClientes.getDbIngresosAnuales(): "" %>"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblCalificacion">Calificacion</label>
                                     <select class="form-control" name="ddlCalificacion">
-                                        <option value="1">None</option>
-                                        <option value="2">Adquirido</option>
-                                        <option value="3">Activo</option>
-                                        <option value="4">Fallo de mercado</option>
-                                        <option value="5">Proyecto cancelado</option>
-                                        <option value="6">Apagar</option>
+                                        <option value="1" <%= obclsPosiblesClientes.obclsCalificacion != null ? obclsPosiblesClientes.obclsCalificacion.getInCodigo() == 1 ? "selected" : "" : "" %>>None</option>
+                                        <option value="2" <%= obclsPosiblesClientes.obclsCalificacion != null ? obclsPosiblesClientes.obclsCalificacion.getInCodigo() == 2 ? "selected" : "" : "" %>>Adquirido</option>
+                                        <option value="3" <%= obclsPosiblesClientes.obclsCalificacion != null ? obclsPosiblesClientes.obclsCalificacion.getInCodigo() == 3 ? "selected" : "" : "" %>>Activo</option>
+                                        <option value="4" <%= obclsPosiblesClientes.obclsCalificacion != null ? obclsPosiblesClientes.obclsCalificacion.getInCodigo() == 4 ? "selected" : "" : "" %>>Fallo de mercado</option>
+                                        <option value="5" <%= obclsPosiblesClientes.obclsCalificacion != null ? obclsPosiblesClientes.obclsCalificacion.getInCodigo() == 5 ? "selected" : "" : "" %>>Proyecto cancelado</option>
+                                        <option value="6" <%= obclsPosiblesClientes.obclsCalificacion != null ? obclsPosiblesClientes.obclsCalificacion.getInCodigo() == 6 ? "selected" : "" : "" %>>Apagar</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblNPCE">
-                                        <input type="checkbox" name="chkNPCE"/>
+                                        <input type="checkbox" name="chkNPCE"
+                                               <%= obclsPosiblesClientes.getChNPCE() == 'S' ? "checked" : "" %>/>
                                         No participacion correo electronico
                                     </label>                                    
                                 </div>
@@ -196,15 +214,18 @@
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label name="lblIDSkype">ID de Skype</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el ID de Skype" name="txtIDSkype" />
+                                    <input class="form-control" type="text" placeholder="Ingrese el ID de Skype" name="txtIDSkype" 
+                                           value="<%= obclsPosiblesClientes.getStIDSkype() != null ? obclsPosiblesClientes.getStIDSkype(): "" %>"/>
                                 </div>
                                 <div class="col-md-3">
                                     <label name="lblTwitter">Twitter</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese el Twitter" name="txtTwitter" />
+                                    <input class="form-control" type="text" placeholder="Ingrese el Twitter" name="txtTwitter" 
+                                           value="<%= obclsPosiblesClientes.getStTwitter()!= null ? obclsPosiblesClientes.getStTwitter(): "" %>"/>
                                 </div>
                                 <div class="col-md-6">
                                     <label name="lblCorreoSecundario">Correo electronico secundario</label>
-                                    <input class="form-control" type="text" placeholder="Ingrese correo secundario" name="txtCorreoSecundario" />
+                                    <input class="form-control" type="text" placeholder="Ingrese correo secundario" name="txtCorreoSecundario" 
+                                           value="<%= obclsPosiblesClientes.getStCorreoSecundario()!= null ? obclsPosiblesClientes.getStCorreoSecundario() : "" %>"/>
                                 </div>
                             </div>
                         </div>
@@ -269,6 +290,14 @@
                                             <td><%= item.getStIDSkype() %></td>
                                             <td><%= item.getStTwitter() %></td>
                                             <td><%= item.getStCorreoSecundario() %></td>
+                                            <td>
+                                                <a class="btn btn-success btn-sm" 
+                                                   href="PosiblesClientesController?stOpcion=M&codigoSeleccionado=<%= item.getInCodigo() %>">
+                                                Modificar</a>
+                                                <a class="btn btn-danger btn-sm" 
+                                                   href="PosiblesClientesController?stOpcion=E&codigoSeleccionado=<%= item.getInCodigo() %>">
+                                                Eliminar</a>
+                                            </td>
                                         </tr>
                                         <%
                                             }

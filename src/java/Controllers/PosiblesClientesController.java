@@ -39,7 +39,43 @@ public class PosiblesClientesController extends HttpServlet {
             btnGuardar(request, response);
         } else if (request.getParameter("btnModificar") != null) {
         } else if (request.getParameter("btnCancelar") != null) {
+        } else if (request.getParameter("codigoSeleccionado") != null) {
+            if (request.getParameter("stOpcion").equals("M")) {
+                cargarModificar(request, response);
+            } else if (request.getParameter("stOpcion").equals("E")) {
+            }
         }
+    }
+
+    public void cargarModificar(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+        try {
+            //Modelo sobre el que estamos trabajando
+            Models.clsPosiblesClientes obclsPosiblesClientes = new Models.clsPosiblesClientes();
+            //Lista de objetos donde esta la informacion guardada
+            List<Models.clsPosiblesClientes> lstclsPosiblesClientes = new ArrayList<Models.clsPosiblesClientes>();
+
+            HttpSession session = request.getSession(true);
+
+            if (session.getAttribute("sesion_lstclsPosiblesClientes") != null) {
+                lstclsPosiblesClientes = (List<Models.clsPosiblesClientes>) session.getAttribute("sesion_lstclsPosiblesClientes");
+            }
+
+            for (Models.clsPosiblesClientes item : lstclsPosiblesClientes) {
+                if (item.getInCodigo() == Integer.parseInt(request.getParameter("codigoSeleccionado"))) {
+                    obclsPosiblesClientes = item;
+                }
+            }
+            
+            request.setAttribute("obclsPosiblesClientes", obclsPosiblesClientes);
+            request.getRequestDispatcher("PosiblesClientes.jsp").forward(request, response);
+            
+        } catch (Exception ex) {
+            request.setAttribute("stTipo", "error");
+            request.setAttribute("stMensaje", ex.getMessage());
+            request.getRequestDispatcher("PosiblesClientes.jsp").forward(request, response);
+        }
+
     }
 
     public void btnGuardar(HttpServletRequest request,
@@ -191,7 +227,9 @@ public class PosiblesClientesController extends HttpServlet {
                 char chSeleccion = request.getParameter("chkNPCE").equals("on")
                         ? 'S' : 'N';
                 obclsPosiblesClientes.setChNPCE(chSeleccion);
-            }
+            }else
+                obclsPosiblesClientes.setChNPCE('N');
+            
             if (request.getParameter("txtIDSkype") != null) {
                 obclsPosiblesClientes.setStIDSkype(request.getParameter("txtIDSkype"));
             }
